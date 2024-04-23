@@ -9,11 +9,26 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
+        VStack(alignment: .leading) {
+            Text("Conversion App")
+                .bold()
+                .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
+            NavigationView {
+                VStack(alignment: .leading) {
+                    NavigationLink("World Currency Exchange") {
+                        Converter()
+                    }
+                    NavigationLink("Crypto Exchange") {
+                        CryptoConverter()
+                    }
+                    Spacer()
+                }
+                
+            }
+            .navigationViewStyle(.stack)
+            .navigationDestination(for: String.self) { value in
+                Text("This is screen number \(value)")
+            }
         }
         .padding()
     }
